@@ -1,0 +1,115 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.full-height-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.height-main-content {
+  min-height: 300px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.dark-purple{
+  background-color: rgb(29, 8, 34);
+}
+
+.purple{
+  background-color: rgb(76, 42, 133);
+}
+
+.light-blue{
+  background-color: rgb(107, 127, 215);
+}
+
+.text-logo{
+  color: rgb(107, 127, 215);
+}
+
+
+.bg-primary-custom {
+  background-color: rgba(107, 127, 215, 0.1);
+}
+
+.bg-secondary-custom {
+  background-color: rgba(107, 127, 215, 0.3);
+}
+
+.bg-info-custom {
+  background-color: rgb(107, 127, 215);
+}
+
+.text-primary-custom {
+  color: rgb(107, 127, 215);
+}
+
+.text-secondary-custom {
+  color: rgba(107, 127, 215, 0.8);
+}
+
+.border-primary-custom {
+  border-color: rgb(107, 127, 215) !important; 
+}
+
+.btn-primary-custom {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: rgb(107, 127, 215);
+  --bs-btn-border-color: rgb(107, 127, 215);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: rgba(107, 127, 215, 0.8);
+  --bs-btn-hover-border-color: rgba(107, 127, 215, 0.8);
+  --bs-btn-focus-shadow-rgb: 166, 191, 240; 
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: rgba(107, 127, 215, 0.9);
+  --bs-btn-active-border-color: rgba(107, 127, 215, 0.9);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: rgba(107, 127, 215, 0.5);
+  --bs-btn-disabled-border-color: rgba(107, 127, 215, 0.5);
+}
+
+.btn-outline-primary-custom {
+  --bs-btn-color: rgb(107, 127, 215);
+  --bs-btn-border-color: rgb(107, 127, 215);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: rgb(107, 127, 215);
+  --bs-btn-hover-border-color: rgb(107, 127, 215);
+  --bs-btn-focus-shadow-rgb: 166, 191, 240;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: rgb(107, 127, 215);
+  --bs-btn-active-border-color: rgb(107, 127, 215);
+  --bs-btn-disabled-color: rgb(107, 127, 215);
+  --bs-btn-disabled-border-color: rgb(107, 127, 215);
+}
+
+.navbar-brand:hover {
+  color: rgb(107, 127, 215) !important;
+}
