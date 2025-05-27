@@ -11,13 +11,22 @@ function App() {
   useEffect(() => {
     const loadConfig = async () => {
       try {
-        const response = await fetch('/api/get_config');
-        const config = await response.json();
+        let clientId, authority;
+
+        if (process.env.NODE_ENV === 'development') {
+          clientId = process.env.REACT_APP_AAD_CLIENT_ID;
+          authority = process.env.REACT_APP_AAD_AUTHORITY;
+        } else {
+          const response = await fetch('/api/get_config');
+          const config = await response.json();
+          clientId = config.clientId;
+          authority = config.authority;
+        }
 
         const instance = new PublicClientApplication({
           auth: {
-            clientId: config.clientId,
-            authority: config.authority,
+            clientId,
+            authority,
             redirectUri: window.location.origin,
           },
           cache: {

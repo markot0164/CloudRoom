@@ -6,7 +6,7 @@ import { useMsal } from '@azure/msal-react';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { accounts } = useMsal();
+  const { instance, accounts } = useMsal();
 
   useEffect(() => {
     if (accounts.length > 0) {
@@ -14,15 +14,16 @@ const HomePage = () => {
     }
   }, [accounts, navigate]);
 
-  const { instance } = useMsal();
-
   const handleLogin = async () => {
     try {
-      await instance.loginPopup({
+      const loginResponse = await instance.loginPopup({
         scopes: ['openid', 'profile', 'email'],
         prompt: 'select_account',
       });
 
+      if (loginResponse && loginResponse.account) {
+        navigate('/area-personale');
+      }
     } catch (error) {
       console.error('Errore durante il login:', error);
     }
@@ -65,9 +66,7 @@ const HomePage = () => {
 
         <Container className="py-5">
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            <motion.div
-              className="col"
-            >
+            <motion.div className="col">
               <div className="card h-100 shadow-sm rounded border-primary-custom">
                 <div className="card-body text-center">
                   <h5 className="card-title fw-semibold text-primary-custom">Archiviazione Sicura</h5>
@@ -77,9 +76,7 @@ const HomePage = () => {
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              className="col"
-            >
+            <motion.div className="col">
               <div className="card h-100 shadow-sm rounded border-primary-custom">
                 <div className="card-body text-center">
                   <h5 className="card-title fw-semibold text-primary-custom">Gestione Checklist</h5>
@@ -89,9 +86,7 @@ const HomePage = () => {
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              className="col"
-            >
+            <motion.div className="col">
               <div className="card h-100 shadow-sm rounded border-primary-custom">
                 <div className="card-body text-center">
                   <h5 className="card-title fw-semibold text-primary-custom">Notifiche Smart</h5>
