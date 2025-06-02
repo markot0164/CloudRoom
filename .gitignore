@@ -1,3 +1,4 @@
 node_modules/
-static_app/.gitignore
+static_app/.env.local
 .gitignore
+static_app/node_modules/
