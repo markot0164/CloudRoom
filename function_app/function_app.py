@@ -3,19 +3,15 @@ import os
 import azure.functions as func
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
-import logging
 
-get_config = func.Blueprint()
+app = func.FunctionApp()
 
-@get_config.route(route="get_config", auth_level=func.AuthLevel.ANONYMOUS)
-def get_config_handler(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info("Richiesta ricevuta su /api/get_config")
-
+@app.function_name(name="GetMicrosoftEntraIDKey")
+@app.route(route="get_microsoft_entra_id_key", auth_level=func.AuthLevel.ANONYMOUS)
+def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
         key_vault_url = os.environ["KEY_VAULT_URL"]
-
         credential = DefaultAzureCredential()
-
         client = SecretClient(vault_url=key_vault_url, credential=credential)
 
         client_id = client.get_secret("AAD_CLIENT_ID").value
@@ -29,5 +25,4 @@ def get_config_handler(req: func.HttpRequest) -> func.HttpResponse:
             mimetype="application/json"
         )
     except Exception as e:
-        logging.error(f"Errore durante il recupero dei segreti: {e}")
         return func.HttpResponse(f"Errore: {str(e)}", status_code=500)
