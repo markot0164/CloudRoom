@@ -7,7 +7,7 @@ from azure.keyvault.secrets import SecretClient
 app = func.FunctionApp()
 
 @app.function_name(name="GetMicrosoftEntraIDKey")
-@app.route(route="get_microsoft_entra_id_key", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="get_microsoft_entra_id_key", auth_level=func.AuthLevel.FUNCTION)
 def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
         key_vault_url = os.environ["KEY_VAULT_URL"]

@@ -17,7 +17,7 @@ function App() {
           clientId = process.env.REACT_APP_AAD_CLIENT_ID;
           authority = process.env.REACT_APP_AAD_AUTHORITY;
         } else {
-          const response = await fetch('https://cloudroomfunctions.azurewebsites.net/api/GetMicrosoftEntraIDKey');
+          const response = await fetch('/api/get_microsoft_entra_id_key');
           const config = await response.json();
           clientId = config.clientId;
           authority = config.authority;
