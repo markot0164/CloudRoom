@@ -14,8 +14,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         credential = DefaultAzureCredential()
         client = SecretClient(vault_url=key_vault_url, credential=credential)
 
-        client_id = client.get_secret("AAD_CLIENT_ID").value
-        authority = client.get_secret("AAD_AUTHORITY").value
+        client_id = client.get_secret("AAD-CLIENT-ID").value
+        authority = client.get_secret("AAD-AUTHORITY").value
 
         return func.HttpResponse(
             body=json.dumps({
