@@ -11,7 +11,9 @@ app = func.FunctionApp()
 def main(req: func.HttpRequest) -> func.HttpResponse:
     try:
         key_vault_url = os.environ["KEY_VAULT_URL"]
+        
         credential = DefaultAzureCredential()
+        
         client = SecretClient(vault_url=key_vault_url, credential=credential)
 
         client_id = client.get_secret("AAD-CLIENT-ID").value
@@ -25,4 +27,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             mimetype="application/json"
         )
     except Exception as e:
-        return func.HttpResponse(f"Errore: {str(e)}", status_code=500)
+        print(f"Errore nella funzione durante il recupero segreti dal Key Vault: {str(e)}")
+        return func.HttpResponse(
+            f"Errore interno del server durante il recupero della configurazione MSAL.",
+            status_code=500
+        )
