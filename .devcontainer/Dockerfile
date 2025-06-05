@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
@@ -25,7 +25,12 @@ RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - \
     && npm install -g npm@latest \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g --arch=arm64 azure-functions-core-tools@4 --unsafe-perm true
+RUN npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
+    && apt-get update \
+    && apt-get install -y azure-cli \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -38,7 +43,10 @@ RUN npm install
 
 WORKDIR /app/function_app
 
+RUN python3 -m pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+ENV FUNCTIONS_WORKER_RUNTIME_PYTHON="/usr/bin/python3"
 
 WORKDIR /app
 

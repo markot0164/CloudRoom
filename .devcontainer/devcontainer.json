@@ -1,23 +1,24 @@
 {
-  "name": "CloudRoom Dev Container", 
+  "name": "CloudRoom Dev Container",
   "build": {
-      "dockerfile": "./Dockerfile",
-      "context": ".."
+    "dockerfile": "./Dockerfile",
+    "context": ".."
   },
   "customizations": {
-      "vscode": {
-          "settings": {
-              "terminal.integrated.shell.linux": "/bin/bash",
-              "editor.formatOnSave": true
-          },
-          "extensions": [
-              "ms-python.python",
-              "ms-python.vscode-pylance",
-              "dbaeumer.vscode-eslint",
-              "esbenp.prettier-vscode",
-              "dsznajder.es7-react-js-snippets"
-          ]
-      }
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "dsznajder.es7-react-js-snippets",
+        "ms-azuretools.vscode-azurefunctions"
+      ]
+    }
   },
   "forwardPorts": [3000, 7071],
   "remoteUser": "root"
