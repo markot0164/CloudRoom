@@ -17,7 +17,7 @@ const HomePage = () => {
   const handleLogin = async () => {
     try {
       const loginResponse = await instance.loginPopup({
-        scopes: ['openid', 'profile', 'email'],
+        scopes: ['openid', 'profile', 'email', "Calendars.Read"],
         prompt: 'select_account',
       });
 
@@ -33,7 +33,7 @@ const HomePage = () => {
     <div className="min-vh-100 bg-light text-dark d-flex flex-column">
       <Navbar bg="white" expand="lg" className="shadow-sm">
         <Container>
-          <Navbar.Brand className="fs-3 fw-bold text-primary-custom" href="#home">
+          <Navbar.Brand className="fs-3 fw-bold text-primary-custom" onClick={() => navigate("/")}>
             CloudRoom
           </Navbar.Brand>
 

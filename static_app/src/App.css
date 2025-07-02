@@ -55,7 +55,6 @@ html, body, #root {
   color: rgb(107, 127, 215);
 }
 
-
 .bg-primary-custom {
   background-color: rgba(107, 127, 215, 0.1);
 }
@@ -112,4 +111,33 @@ html, body, #root {
 
 .navbar-brand:hover {
   color: rgb(107, 127, 215) !important;
+  cursor: pointer;
+}
+
+.floating-home-button {
+  position: fixed; 
+  bottom: 65px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  background-color: #4c2a85;
+  border-color: #320e3b;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-home-button:hover {
+  background-color: #320e3b;
+  border-color: #320e3b;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.floating-home-button svg {
+  color: white;
 }

@@ -1,0 +1,17 @@
+@media (max-width: 500px) {
+  .nav-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .nav-grid .btn {
+    border-right: none !important;
+    border-bottom: 1px solid #ffffff30;
+  }
+
+  .nav-grid .btn:nth-child(3),
+  .nav-grid .btn:nth-child(4) {
+    border-bottom: none;
+  }
+}

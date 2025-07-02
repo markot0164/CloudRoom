@@ -14,8 +14,6 @@ Il progetto propone lo sviluppo di una piattaforma autogestita per la gestione d
 - Azure Cosmos DB: Impiegato per la memorizzazione dei dati strutturati della piattaforma, come checklist, metadati dei documenti e configurazioni degli utenti, garantendo scalabilità e disponibilità globale.
 - Azure Functions: per Implementare la logica applicativa, sarà utilizzato per operazioni come la creazione di checklist, la generazione di URL sicuri per i documenti e l’interazione con gli altri servizi.
 - Microsoft Graph API: Consente la sincronizzazione degli eventi creati dagli utenti con i loro calendari personali, migliorando la pianificazione e l’organizzazione delle attività legate agli esami.
-- Azure Notification Hubs: Gestisce l’invio di notifiche push agli utenti per avvisi su scadenze imminenti, nuovi documenti caricati o aggiornamenti sulle checklist condivise.
 - Azure Key Vault: Protegge chiavi critiche e credenziali di accesso ai servizi, garantendo un elevato livello di sicurezza per le operazioni della piattaforma.
-- Azure Application Insights: Monitora le prestazioni della piattaforma, raccogliendo dati sull’utilizzo e fornendo strumenti per il debugging e l’ottimizzazione.
-- Azure Cognitive Services: Utilizzato per implementare una funzione di riassunto automatico dei documenti caricati, facilitando agli utenti la comprensione rapida dei contenuti.
+- Azure OpenAI: Utilizzato per implementare una funzione di riassunto automatico dei documenti caricati, facilitando agli utenti la comprensione rapida dei contenuti.
 - Microsoft EntraID: Fornisce un sistema di login sicuro e facile da integrare.

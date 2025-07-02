@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PersonalArea from './pages/PersonalArea';
+import Calendario from './pages/Calendario';
+import Checklist from './pages/Checklist';
 import { MsalProvider } from '@azure/msal-react';
 import { PublicClientApplication } from '@azure/msal-browser';
 
@@ -29,8 +31,7 @@ function App() {
         },
       });
 
-      setMsalInstance(instance);
-      console.log("MSAL instance creata con successo");
+      setMsalInstance(instance);   
     } catch (error) {
       console.error("Errore nella configurazione MSAL:", error);
     }
@@ -46,6 +47,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/area-personale" element={<PersonalArea />} />
+          <Route path="/calendario" element={<Calendario />} />
+          <Route path="/checklist" element={<Checklist />} />
         </Routes>
       </BrowserRouter>
     </MsalProvider>
