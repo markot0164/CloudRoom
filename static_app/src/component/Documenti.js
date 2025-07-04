@@ -15,7 +15,7 @@ const Documenti = () => {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/get_documents`, {
+        const res = await fetch(`/api/get_documents`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
@@ -74,7 +74,7 @@ const Documenti = () => {
     try {
       const filename = encodeURIComponent(selectedFile.name);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/upload_document?filename=${filename}`, {
+      const res = await fetch(`/api/upload_document?filename=${filename}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -98,7 +98,7 @@ const Documenti = () => {
       alert("Upload completato con successo!");
       handleCloseModal();
 
-      const resDocs = await fetch(`${process.env.REACT_APP_API_URL}/get_documents`, {
+      const resDocs = await fetch(`/api/get_documents`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

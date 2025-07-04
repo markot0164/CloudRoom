@@ -30,7 +30,7 @@ const Checklist = () => {
       if (!userId) return;
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/get_checklists`, {
+        const response = await fetch(`/api/get_checklists`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Checklist = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/create_checklist`, {
+      const response = await fetch(`/api/create_checklist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const Checklist = () => {
     );
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/update_checklist_item`, {
+      const response = await fetch(`/api/update_checklist_item`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -136,7 +136,7 @@ const Checklist = () => {
     if (!window.confirm("Sei sicuro di voler eliminare questa checklist?")) return;
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/delete_checklist`, {
+      const response = await fetch(`/api/delete_checklist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
