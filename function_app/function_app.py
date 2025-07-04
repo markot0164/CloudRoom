@@ -15,12 +15,6 @@ from openai import AzureOpenAI
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
-CORS_HEADERS = {
-    "Access-Control-Allow-Origin": "http://localhost:3000",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type"
-}
-
 mongo_uri = os.environ["MONGO_URI"]
 client = MongoClient(mongo_uri)
 db = client[os.environ["MONGO_DB_NAME"]]
@@ -40,7 +34,7 @@ def get_oid_from_token(token: str):
 @app.route(route="ensure_user_registered", methods=["POST", "OPTIONS"])
 def ensure_user_registered(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
-        return func.HttpResponse("", status_code=204, headers=CORS_HEADERS)
+        return func.HttpResponse("", status_code=204)
 
     try:
         data = req.get_json()
@@ -52,8 +46,7 @@ def ensure_user_registered(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse(
                 json.dumps({"error": "Missing userId, name or email"}),
                 status_code=400,
-                mimetype="application/json",
-                headers=CORS_HEADERS
+                mimetype="application/json"
             )
 
         collection = db["users"]
@@ -63,8 +56,7 @@ def ensure_user_registered(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse(
                 json.dumps({"status": "Utente già registrato"}),
                 status_code=200,
-                mimetype="application/json",
-                headers=CORS_HEADERS
+                mimetype="application/json"
             )
 
         collection.insert_one({
@@ -76,8 +68,7 @@ def ensure_user_registered(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json.dumps({"status": "registered"}),
             status_code=201,
-            mimetype="application/json",
-            headers=CORS_HEADERS
+            mimetype="application/json"
         )
 
     except Exception as e:
@@ -85,15 +76,14 @@ def ensure_user_registered(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json.dumps({"error": str(e)}),
             status_code=500,
-            mimetype="application/json",
-            headers=CORS_HEADERS
+            mimetype="application/json"
         )
     
 @app.route(route="create_checklist", methods=["POST", "OPTIONS"])
 def create_checklist(req: func.HttpRequest) -> func.HttpResponse:
     
     if req.method == "OPTIONS":
-        return func.HttpResponse("", status_code=204, headers=CORS_HEADERS)
+        return func.HttpResponse("", status_code=204)
 
     try:
         data = req.get_json()
@@ -124,16 +114,14 @@ def create_checklist(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json.dumps(checklist, default=serialize_objectid),
             status_code=201,
-            mimetype="application/json",
-            headers=CORS_HEADERS
+            mimetype="application/json"
         )
 
     except Exception as e:
         logging.error(f"Errore nella creazione checklist: {e}")
         return func.HttpResponse(
             str(e),
-            status_code=500,
-            headers=CORS_HEADERS
+            status_code=500
         )
     
 @app.route(route="get_checklists", methods=["POST"])    
@@ -150,8 +138,7 @@ def get_checklists(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json_util.dumps(results),
             status_code=200,
-            mimetype="application/json",
-            headers={"Access-Control-Allow-Origin": "http://localhost:3000"}
+            mimetype="application/json"
         )
 
     except Exception as e:
@@ -164,8 +151,7 @@ def update_checklist_item(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
         return func.HttpResponse(
             "",
-            status_code=204,
-            headers=CORS_HEADERS
+            status_code=204
         )
 
     try:
@@ -191,20 +177,14 @@ def update_checklist_item(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json_util.dumps(result),
             status_code=200,
-            mimetype="application/json",
-            headers={
-                "Access-Control-Allow-Origin": "http://localhost:3000"
-            }
+            mimetype="application/json"
         )
 
     except Exception as e:
         logging.error(f"Errore nell'aggiornamento checklist: {e}")
         return func.HttpResponse(
             str(e),
-            status_code=500,
-            headers={
-                "Access-Control-Allow-Origin": "http://localhost:3000"
-            }
+            status_code=500
         )
     
 @app.route(route="delete_checklist", methods=["POST", "OPTIONS"])
@@ -212,8 +192,7 @@ def delete_checklist(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
         return func.HttpResponse(
             "",
-            status_code=204,
-            headers=CORS_HEADERS
+            status_code=204
         )
 
     try:
@@ -231,8 +210,7 @@ def delete_checklist(req: func.HttpRequest) -> func.HttpResponse:
         if result.deleted_count == 1:
             return func.HttpResponse(
                 "Checklist eliminata con successo.",
-                status_code=200,
-                headers=CORS_HEADERS
+                status_code=200
             )
         else:
             return func.HttpResponse("Checklist non trovata", status_code=404)
@@ -241,8 +219,7 @@ def delete_checklist(req: func.HttpRequest) -> func.HttpResponse:
         logging.error(f"Errore durante l'eliminazione della checklist: {e}")
         return func.HttpResponse(
             str(e),
-            status_code=500,
-            headers=CORS_HEADERS
+            status_code=500
         )
     
 @app.route(route="get_notifications")
@@ -298,11 +275,11 @@ def get_notifications(req: func.HttpRequest) -> func.HttpResponse:
 @app.route(route="upload_document", methods=["GET", "OPTIONS"])
 def upload_document(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
-        return func.HttpResponse("", status_code=204, headers=CORS_HEADERS)
+        return func.HttpResponse("", status_code=204)
 
     filename = req.params.get("filename")
     if not filename:
-        return func.HttpResponse("filename mancante", status_code=400, headers=CORS_HEADERS)
+        return func.HttpResponse("filename mancante", status_code=400)
 
     try:
         account_name = os.environ["BLOB_ACCOUNT_NAME"]
@@ -320,15 +297,15 @@ def upload_document(req: func.HttpRequest) -> func.HttpResponse:
 
         sas_url = f"https://{account_name}.blob.core.windows.net/{container_name}/{filename}?{sas_token}"
 
-        return func.HttpResponse(sas_url, status_code=200, headers=CORS_HEADERS)
+        return func.HttpResponse(sas_url, status_code=200)
 
     except Exception as e:
-        return func.HttpResponse(f"Errore nella generazione del SAS token: {str(e)}", status_code=500, headers=CORS_HEADERS)
+        return func.HttpResponse(f"Errore nella generazione del SAS token: {str(e)}", status_code=500)
 
 @app.route(route="get_documents", methods=["GET", "OPTIONS"])
 def get_documents(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
-        return func.HttpResponse("", status_code=204, headers=CORS_HEADERS)
+        return func.HttpResponse("", status_code=204)
 
     try:
         connect_str = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
@@ -451,14 +428,12 @@ def get_documents(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             json.dumps(documents, default=serialize_objectid),
             mimetype="application/json",
-            status_code=200,
-            headers=CORS_HEADERS
+            status_code=200
         )
 
     except Exception as e:
         logging.error(f"Errore interno generale in get_documents: {str(e)}")
         return func.HttpResponse(
             f"Errore interno del server: {str(e)}",
-            status_code=500,
-            headers=CORS_HEADERS
+            status_code=500
         )
