@@ -13,7 +13,7 @@ import unicodedata
 import fitz 
 from openai import AzureOpenAI
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 mongo_uri = os.environ["MONGO_URI"]
 client = MongoClient(mongo_uri)
