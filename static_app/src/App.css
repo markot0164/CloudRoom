@@ -127,13 +127,13 @@ html, body, #root {
   font-size: 24px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  background-color: #4c2a85;
+  background-color: #00cbaa;
   border-color: #320e3b;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .floating-home-button:hover {
-  background-color: #320e3b;
+  background-color: #00a58a;
   border-color: #320e3b;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

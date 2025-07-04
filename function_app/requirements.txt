@@ -6,9 +6,8 @@ pymongo
 pyjwt[crypto]
 requests
 azure-storage-blob
-azure-ai-language-textanalytics
-PyPDF2==3.0.1
-PyMuPDF==1.23.23
-fitz
+PyMuPDF
 azure-ai-formrecognizer 
 azure-core
+openai
+dotenv

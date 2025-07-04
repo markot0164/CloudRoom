@@ -16,12 +16,12 @@
   padding: 12px 20px;
   font-size: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  background-color: #4c2a85;
+  background-color: #00cbaa;
   border-color: #320e3b;
 }
 
 .floating-upload-btn:hover {
-  background-color: #320e3b;
+  background-color: #00a58a;
   border-color: #320e3b;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
