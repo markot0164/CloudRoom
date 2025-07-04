@@ -44,7 +44,7 @@ const Notifiche = () => {
 
       try {
         const response = await fetch(
-          `/api/get_notifications?userId=${userOid}`,
+          `${process.env.REACT_APP_API_URL}/get_notifications?userId=${userOid}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
