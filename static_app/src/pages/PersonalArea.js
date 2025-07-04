@@ -33,7 +33,7 @@ const PersonalArea = () => {
         const userAlreadySaved = localStorage.getItem("userRegistered") === "true";
 
         if (!userAlreadySaved) {
-          fetch(`${process.env.REACT_APP_API_URL}/ensure_user_registered`, {
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/ensure_user_registered`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
