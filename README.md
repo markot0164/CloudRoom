@@ -13,7 +13,7 @@ Il progetto propone lo sviluppo di una piattaforma autogestita per la gestione d
 - Azure Blob Storage: Utilizzato per la gestione e l’archiviazione sicura dei documenti caricati dagli utenti, con accesso controllato tramite URL protetti.
 - Azure Cosmos DB: Impiegato per la memorizzazione dei dati strutturati della piattaforma, come checklist, documenti, utenti, garantendo scalabilità e disponibilità globale.
 - Azure Functions: per Implementare la logica applicativa utilizzato ad esempio per operazioni come la creazione di checklist, il sistema di notifica o il salvataggio dei dati sul database ecc...
-- - Microsoft Graph API: Consente la sincronizzazione degli eventi creati dagli utenti con i loro calendari personali, migliorando la pianificazione e l’organizzazione delle attività legate agli esami.
+- Microsoft Graph API: Consente la sincronizzazione degli eventi creati dagli utenti con i loro calendari personali, migliorando la pianificazione e l’organizzazione delle attività legate agli esami.
 - Azure Key Vault: Protegge chiavi critiche e credenziali di accesso ai servizi, garantendo un elevato livello di sicurezza per le operazioni della piattaforma.
 - Azure OpenAI: Utilizzato per implementare una funzione di riassunto automatico dei documenti caricati, facilitando agli utenti la comprensione rapida dei contenuti.
 - Microsoft EntraID: Fornisce un sistema di login sicuro.
