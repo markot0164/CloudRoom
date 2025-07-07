@@ -1,4 +1,0 @@
-node_modules/
-static_app/.env.local
-.gitignore
-static_app/node_modules/
